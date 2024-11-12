@@ -8,6 +8,9 @@
  * @since 1.0.0
  */
 ?>
+
+<?php get_template_part( 'templates-part/modale' ); ?>
+
     <footer id="site-footer" role="contentinfo">
         <div class="footer-container">
             <!-- Footer content, like copyright or navigation -->
