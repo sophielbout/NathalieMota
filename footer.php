@@ -9,21 +9,26 @@
  */
 ?>
 
-<?php get_template_part( 'templates-part/modale' ); ?>
-
-    <footer id="site-footer" role="contentinfo">
-        <div class="footer-container">
-            <!-- Footer content, like copyright or navigation -->
-            <p>&copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?>. Tous droits réservés.</p>
+<footer>
+    <div class="footer-container">
+        <nav class="footer-nav" role="navigation" aria-label="<?php _e('Menu de pied de page', 'NMota'); ?>">
             <?php
-            wp_nav_menu( array(
-                'theme_location' => 'footer',
-                'menu_id'        => 'footer-menu',
-            ) );
+                wp_nav_menu([
+                    'theme_location' => 'footer-menu',
+                    'container'      => false,
+                    'menu_class'     => 'footer-menu',
+                ]);
             ?>
-        </div>
-    </footer>
+        </nav>
+    </div>
+</footer>
 
+
+    <?php get_template_part( 'templates_part/modale' ); ?>
+
+        <!-- Fin du contenu du site -->
+        </div> <!-- Fin de .site-wrapper -->
     <?php wp_footer(); ?>
+
 </body>
 </html>

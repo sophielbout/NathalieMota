@@ -18,28 +18,28 @@
 </head>
 
 <body <?php body_class(); ?>>
-    <header id="site-header" role="banner">
-        <div class="header-container">
-            <!-- Site logo -->
-            <?php if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) : ?>
-                <div class="site-logo">
-                    <?php the_custom_logo(); ?>
-                </div>
-            <?php endif; ?>
+    <div class="site-wrapper">
+        <!-- Début du contenu du site -->
 
-            <!-- Site title -->
-            <h1 class="site-title">
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-            </h1>
+    <header class="site-header">
 
-            <!-- Navigation -->
-            <nav id="site-navigation" role="navigation">
-                <?php
-                wp_nav_menu( array(
-                    'theme_location' => 'primary',
-                    'menu_id'        => 'primary-menu',
-                ) );
-                ?>
-            </nav>
-        </div>
-    </header>
+        <!-- Logo avec lien vers la page d’accueil -->
+        <a href="<?php echo esc_url(home_url('/')); ?>">
+            <img src="<?php echo esc_url(get_template_directory_uri() . '/images/logo.png'); ?>"  class="logo" alt="<?php bloginfo('name'); ?>">
+        </a>
+
+        <!-- Conteneur du menu -->
+        <nav role="navigation" aria-label="<?php _e('Menu principal', 'NMota'); ?>" class="nav-container">
+            <?php
+                wp_nav_menu([
+                    'theme_location' => 'main-menu',
+                    'container'      => false, // Pas de <div> autour du <ul> de navigation
+                    'menu_class'     => 'main-menu'
+                ]);
+            ?>
+        </nav>
+</header>
+
+</div>
+
+</header>
