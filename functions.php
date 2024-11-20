@@ -7,22 +7,45 @@
  */
 
 /**
- * Enqueues the main stylesheet and any JavaScript files.
+ * Enqueues stylesheets and JavaScript files.
  */
-function nmota_enqueue_scripts() {
-
-    // Main stylesheet
-    wp_enqueue_style( 'natmota-style', get_template_directory_uri() . '/style.css', array(), time() );
-
-
-    // Custom JavaScript file
-    wp_enqueue_script( 'natmota-scripts', get_template_directory_uri() . '/js/scripts.js', array(), time(), true );
+function natmota_enqueue_assets() {
+    // Charger le fichier JS pour la modale (ou tout JS personnalisé)
+    wp_enqueue_script(
+        'natmota-modal-script',
+        get_stylesheet_directory_uri() . '/js/scripts.js',
+        array(),
+        null,
+        true
+    );
 }
-add_action( 'wp_enqueue_scripts', 'nmota_enqueue_scripts' );
+    // Charger le style du thème parent
+    wp_enqueue_style(
+        'parent-style',
+        get_template_directory_uri() . '/style.css'
+    );
+
+    // Charger le CSS compilé par Sass (si présent)
+    if (file_exists(get_stylesheet_directory() . '/css/main.css')) {
+        wp_enqueue_style(
+            'natmota-main-style',
+            get_stylesheet_directory_uri() . '/css/main.css',
+            array('parent-style'),
+            filemtime(get_stylesheet_directory() . '/css/main.css'),
+            'all'
+        );
+    }
 
 
-function register_my_menu() {
-    register_nav_menu('main-menu', __( 'Menu principal', 'nmota' ));
-    register_nav_menu('footer-menu', __( 'Menu de pied de page', 'nmota' ));
+add_action('wp_enqueue_scripts', 'natmota_enqueue_assets');
+
+/**
+ * Registers navigation menus.
+ */
+function natmota_register_menus() {
+    register_nav_menus(array(
+        'main-menu' => __( 'Menu principal', 'nmota' ),
+        'footer-menu' => __( 'Menu de pied de page', 'nmota' ),
+    ));
 }
-add_action( 'after_setup_theme', 'register_my_menu' );
+add_action('after_setup_theme', 'natmota_register_menus');

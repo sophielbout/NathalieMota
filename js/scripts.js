@@ -1,32 +1,23 @@
 document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('myModal');
+    const contactLink = document.querySelector('a[href="#myModal"]');
 
-    // Trouver le lien "Contact" dans le menu par son texte
-    const contactLink = Array.from(document.querySelectorAll('nav a'))
-        .find(link => link.textContent.trim() === 'Contact');
+    // Ouvrir la modale au clic sur le lien "Contact"
+    contactLink.addEventListener('click', function (event) {
+        event.preventDefault();  // Empêche la redirection par défaut
+        modal.classList.add('show');  // Affiche la modale avec l'animation
+    });
 
-    if (contactLink && modal) {
-        contactLink.addEventListener('click', function (event) {
-            event.preventDefault(); // Empêche la redirection
-            modal.style.display = 'flex'; // Affiche la modale
-            setTimeout(() => modal.classList.add('show'), 10); // Ajoute la classe après un léger délai
-        });
-    }
-
-    // Configuration pour fermer la modale
-    const closeModal = document.querySelector('.modal .close');
-    if (closeModal) {
-        closeModal.addEventListener('click', function () {
-            modal.classList.remove('show'); // Retire la classe pour l'animation inverse
-            setTimeout(() => modal.style.display = 'none', 500); // Cache complètement après l'animation
-        });
-    }
-
-    // Ferme la modale si on clique en dehors
-    window.addEventListener('click', function (event) {
-        if (event.target === modal) {
-            modal.classList.remove('show');
-            setTimeout(() => modal.style.display = 'none', 500); // Cache complètement après l'animation
+    // Fermer la modale au clic en dehors de la modale
+    modal.addEventListener('click', function (event) {
+        if (event.target === modal) {  // Si on clique sur le fond
+            modal.classList.remove('show');  // Ferme la modale avec l'animation
         }
+    });
+
+    // Optionnel : fermer la modale au clic sur le bouton "X"
+    const closeButton = modal.querySelector('.close');
+    closeButton.addEventListener('click', function () {
+        modal.classList.remove('show');  // Ferme la modale
     });
 });

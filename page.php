@@ -13,7 +13,7 @@ get_header(); // Appelle l'en-tête du thème
         <div style="height:var(--wp--preset--spacing--50)" aria-hidden="true" class="wp-block-spacer"></div>
 
         <!-- Affiche le titre de la page -->
-        <h1 class="post-title" style="text-align: center;"><?php the_title(); ?></h1>
+
 
         <div style="margin-top:0;margin-bottom:0;height:var(--wp--preset--spacing--30)" aria-hidden="true" class="wp-block-spacer"></div>
 
@@ -24,6 +24,11 @@ get_header(); // Appelle l'en-tête du thème
             </div>
         <?php endif; ?>
     </div>
+
+    <!-- Image Hero -->
+        <div class="image-hero">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/image-hero.png" alt="Hero Image">
+        </div>
 
     <!-- Contenu principal de la page -->
     <div class="post-content">
