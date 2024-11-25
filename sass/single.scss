@@ -1,0 +1,130 @@
+/* ======= Général ======= */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+/* ====== Block Image Items ====== */
+.wp-block-group {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ======= Photo ======= */
+.block-title-image {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    box-sizing: border-box;
+    font-family: 'Space Mono';
+    color: black;
+    font-weight: 400;
+    width: 100%;
+    padding-bottom: 0%;
+}
+
+.post-featured-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ======= Items ======= */
+.items-photo h2 {
+    font-size: 66px;
+    font-family: 'Space Mono' !important;
+    text-transform: uppercase;
+    color: black;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 58px;
+    text-align: left;
+}
+
+.items-photo {
+    border-bottom: 1px solid black;
+    margin-top: 430px;
+    margin-right: 21px;
+    max-width: 50%;
+    font-size: 14px;
+    line-height: 21px;
+    flex: 1;
+    text-align: left;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    display: flex;
+    padding-top: 470px;
+    padding-bottom: 0;
+    margin: 0;
+    align-items: flex-start;
+}
+.post-meta {
+    font-size: 14px;
+    line-height: 21px;
+}
+
+/* ======= Block Contact ======= */
+.block-contact {
+    display: flex;
+    flex-direction: row;
+    border-bottom: black solid 1px;
+    height: 118px;
+    width: 100%;
+    font-family: 'Poppins';
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: left;
+    align-items: center;
+}
+.open-modal {
+    font-family: 'Space Mono';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    background-color: #D8D8D8;
+    color: black;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 272px;
+    height: 50px;
+    gap: 10px;
+    margin-left: 80px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+.open-modal:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+/* ======= Block Like to ======= */
+.block-like-to {
+    font-family: 'Space Mono';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 10%;
+    text-transform: uppercase;
+    text-align: left;
+    width: 100%;
+    padding: 60px 0 70px 0;
+}

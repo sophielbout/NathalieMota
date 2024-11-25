@@ -1,0 +1,137 @@
+// ============================
+// Modal Styles
+// ============================
+
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* ====== Modale par défaut ====== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    animation: modal-close 0.5s ease;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    width: 500px;
+    max-width: 90%;
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+/* ====== Animation d'ouverture ====== */
+
+@keyframes modal-open {
+    from {
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+    }
+}
+
+@keyframes modal-close {
+    from {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.9);
+    }
+}
+
+.modal.show {
+    display: flex;
+    animation: modal-open 0.5s ease forwards;
+}
+
+/* ====== Fermeture ====== */
+
+.modal .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.modal-hero {
+    height: 90px;
+    margin-bottom: 40px;
+    margin-top: 18px;
+}
+
+
+/* ====== Formulaire ====== */
+
+.wpcf7-form {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    color: #313144;
+}
+.wpcf7 input,
+.wpcf7 select {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 263px;
+    max-height: 40px;
+}
+.wpcf7-textarea {
+    height: 210px;
+}
+
+.wpcf7 input[type="submit"] {
+    font-family: 'Space Mono', monospace;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17.77px;
+    color: #000000;
+    background-color: #D8D8D8;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 0%;
+}
+
+.wpcf7-form-control {
+    border: solid 1px #B8BBC2;
+    border-radius: 8px;
+    width: 263px;
+}
