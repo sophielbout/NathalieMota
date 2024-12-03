@@ -1,36 +1,40 @@
 // ============================
-// Portfolio Styles
+// Photoblock Styles
 // ============================
+
+@use '../base/_globals' as *;
+
 /* Style des filtres */
-.portfolio-filters {
+
+.photoblock-filters {
     display: flex;
     gap: 20px;
     margin-bottom: 30px;
 }
 
-.portfolio-filters select {
+.photoblock-filters select {
     padding: 10px;
     font-size: 16px;
 }
 
 /* Style de la galerie de photos */
-.portfolio-gallery {
+.photoblock-gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
 
-.portfolio-item {
+.photoblock-item {
     text-align: center;
 }
 
-.portfolio-item img {
+.photoblock-item img {
     width: 100%;
     height: auto;
     border-radius: 10px;
 }
 
-.portfolio-item h3 {
+.photoblock-item h3 {
     font-size: 18px;
     margin-top: 10px;
 }

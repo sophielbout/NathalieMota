@@ -1,0 +1,56 @@
+// ============================
+// Polices Styles
+// ============================
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins/Poppins-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    src: url('../fonts/SpaceMono/SpaceMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    src: url('../fonts/SpaceMono/SpaceMono-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+//////////////////////////////////////////////////
+/* =============  Styles de texte ============= */
+@mixin text-style($font-family, $font-weight, $font-size, $line-height, $letter-spacing: 0, $font-style: normal) {
+    font-family: $font-family;
+    font-weight: $font-weight;
+    font-size: $font-size;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing;
+    font-style: $font-style;
+}
+
+/* H1 */
+h1 {
+    @include text-style('Space Mono', 700, 96px, 142px, 0, italic);
+}
+
+h2 {
+    @include text-style('Space Mono', 400, 66px, 58px, 0, italic);
+}
+
+h3 {
+    @include text-style('Space Mono', 400, 18px, 27px, 0.1em);
+}
+
+p.text-space-mono {
+    @include text-style('Space Mono', 400, 14px, 21px, 0.1em);
+}
+
+.post-content {
+    @include text-style('Poppins', 300, 14px, 21px, 0.1em);
+}

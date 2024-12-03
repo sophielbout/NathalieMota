@@ -1,0 +1,41 @@
+// ============================
+// Globals Styles
+// ============================
+
+// Conteneur principal
+
+.home {
+    width: 1440px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+#main,
+.sitemain {
+
+    // Styles titres
+    h1, h2, h3, h4, h5, h6 {
+        text-transform: uppercase;
+    }
+
+    // Styles généraux pages
+    &.page-mentions-legales,
+    &.page-vie-privee,
+    &.site-main {
+        font-family: 'Poppins';
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 21px;
+        letter-spacing: 0.1em;
+        padding: 60px 40px 60px 40px;
+    }
+}
+.container {
+    height: 100%;
+}

@@ -54,21 +54,14 @@ function natmota_register_menus() {
 }
 add_action('after_setup_theme', 'natmota_register_menus');
 
-
-
-function associate_taxonomies_with_photo() {
-    register_taxonomy_for_object_type('categorie', 'Photo');
-    register_taxonomy_for_object_type('format', 'Photo');
+function load_jquery_script() {
+    // Vérifie si jQuery est déjà chargé
+    if (!wp_script_is('jquery', 'enqueued')) {
+        wp_enqueue_script('jquery');
+    }
 }
-add_action('init', 'associate_taxonomies_with_photo');
-
-function enqueue_theme_scripts() {
-    wp_enqueue_script(
-        'theme-scripts',
-        get_template_directory_uri() . '/js/script.js', // Chemin vers votre script
-        array(),
-        null,
-        true // Charge dans le footer
-    );
+add_action('wp_enqueue_scripts', 'load_jquery_script');
+function enqueue_custom_scripts() {
+    wp_enqueue_script('custom-navigation', get_template_directory_uri() . '/js/navigation.js', ['jquery'], null, true);
 }
-add_action('wp_enqueue_scripts', 'enqueue_theme_scripts');
+add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');

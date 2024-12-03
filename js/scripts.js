@@ -1,27 +1,33 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const modal = document.getElementById('myModal');
-    const modalLinks = document.querySelectorAll('a[href="#myModal"]'); // Cible tous les boutons
-
-    // Ajoute un événement "click" à chaque bouton
-    modalLinks.forEach(link => {
-        link.addEventListener('click', function (event) {
-            event.preventDefault(); // Empêche la redirection par défaut
-            modal.classList.add('show'); // Ajoute la classe pour afficher la modale
-        });
+jQuery(document).ready(function($) {
+    // Gérer les déclencheurs de modale
+    jQuery('.open-modal').on('click', function(e) {
+       initModal(e, true);
     });
+    jQuery('#menu-item-37').on('click', function(e) {
+        initModal(e);
+     });
+});
 
-    // Ferme la modale au clic sur le fond
-    modal.addEventListener('click', function (event) {
-        if (event.target === modal) { // Si on clique en dehors du contenu
-            modal.classList.remove('show'); // Retire la classe pour cacher la modale
-        }
-    });
+function initModal(e, autoFillRef=false) {
+    e.preventDefault();
 
-    // Ferme la modale au clic sur le bouton "X"
-    const closeButton = modal.querySelector('.close');
-    if (closeButton) {
-        closeButton.addEventListener('click', function () {
-            modal.classList.remove('show');
-        });
+    // Récupérer la référence depuis le bouton cliqué
+    let reference = jQuery('.open-modal').data('ref');
+    let refInput = jQuery('input[name="ref-photo"]');
+
+    // Préremplir le champ "ref-photo" si le formulaire et la référence existent et si autoFillRef est true
+    if (refInput.length && reference && autoFillRef) {
+        refInput.val(reference);
+    }
+
+    // Afficher la modale
+    jQuery('#myModal').addClass('show'); // Ajoute la classe 'show' pour afficher
+};
+
+
+// Gérer la fermeture de la modale
+jQuery('#myModal').on('click', function(e) {
+    if (jQuery(e.target).is('.modal, .close')) {
+        jQuery(this).removeClass('show'); // Supprime la classe 'show' pour masquer
     }
 });

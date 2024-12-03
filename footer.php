@@ -9,7 +9,9 @@
  */
 ?>
 
-<footer>
+</main>
+
+<footer role="contentinfo">
     <div class="footer-container">
         <nav class="footer-nav" role="navigation" aria-label="<?php _e('Menu de pied de page', 'NMota'); ?>">
             <?php
@@ -23,12 +25,10 @@
     </div>
 </footer>
 
+<?php get_template_part( 'templates_parts/modale' ); ?>
 
-    <?php get_template_part( 'templates_part/modale' ); ?>
+</div> <!-- Fin de .site-wrapper -->
 
-        <!-- Fin du contenu du site -->
-        </div> <!-- Fin de .site-wrapper -->
-    <?php wp_footer(); ?>
-
+<?php wp_footer(); ?>
 </body>
 </html>
