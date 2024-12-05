@@ -102,11 +102,11 @@ body {
     font-size: 12px;
     line-height: 18px;
     color: #313144;
-
 }
 
 .wpcf7 input,
-.wpcf7 select {
+.wpcf7 select,
+.wpcf7 textarea {
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 8px;
@@ -115,9 +115,13 @@ body {
     max-width: 269px;
     max-height: 40px;
 }
+
 .wpcf7-textarea {
-    height: 210px;
+    min-height: 210px;
+    max-width: 269px;
+    resize: vertical;
 }
+
 .wpcf7 input[type="submit"] {
     font-family: 'Space Mono', monospace;
     font-weight: 400;
@@ -128,15 +132,16 @@ body {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 0%;
-    transition: background-color 1.5s ease, color 1.5s ease;border: none;
+    transition: background-color 1.5s ease, color 1.5s ease; border: none;
 }
+
 .wpcf7-form-control {
     border-radius: 8px;
     width: 263px;
 
 }
+
 .wpcf7 input[type="submit"]:hover {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     background-color: #000000;
     color: #D8D8D8;
 }

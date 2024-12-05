@@ -1,12 +1,13 @@
 <?php
 /**
- * Template for displaying all pages
+ * Template for the front page
+ *
+ * This is the template for the static front page when set in the WordPress admin.
  *
  * @package NMota
+ * @since 1.0.0
  */
-
-get_header(); // Appelle l'en-tête du thème
-?>
+get_header(); ?>
 
 
 <main>

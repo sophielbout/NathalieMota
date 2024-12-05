@@ -49,17 +49,21 @@
 
 .nav-container ul li a,
 .footer-nav ul li a {
-    font-size: 'Space Mono';
+    font-family: 'Space Mono', monospace; /* Correction : use 'font-family' */
     font-weight: 400;
     text-decoration: none;
     color: black;
     padding: 10px 15px;
-    transition: color 1s ease, font-weight 1s ease;
-
-    &:hover {
-        font-weight: 700;
-    }
+    display: inline-block; /* Assure un comportement plus fluide pour hover */
+    transition: color 0.3s ease, transform 0.3s ease; /* Utilisation de 'transform' */
 }
+
+.nav-container ul li a:hover,
+.footer-nav ul li a:hover {
+    color: rgb(0, 0, 0); /* Changement de couleur pour attirer l'œil */
+    transform: scale(1.1); /* Légère mise en évidence */
+}
+
 
 /* Règle séparée pour menu-item-99 */
 .nav-container ul li.menu-item-99 a:hover,
@@ -68,4 +72,8 @@
     color: black !important;
     text-decoration: none !important;
     pointer-events: auto;
+}
+
+.burger-icon {
+    display: none;
 }

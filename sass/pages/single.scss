@@ -5,7 +5,7 @@
 /* ======= Général ======= */
 
 html, body {
-    height: 100%;
+    height: 100vw;
     margin: 0;
     padding: 0;
 }
@@ -24,13 +24,13 @@ main {
     flex: 1;
 }
 .container-single {
-    width: 1140px !important;
+    width: 100vw !important;
 }
 /* ====== Block Image and Infos ====== */
 .block-image-and-info {
     display: flex;
     flex-direction: column;
-    width: 1148px;
+    width: 100vw;
 }
 
 /* ======= Photo ======= */
@@ -42,8 +42,8 @@ main {
     font-family: 'Space Mono';
     color: black;
     font-weight: 400;
-    width: 100%;
-    height: auto;
+    width: 100vw;
+    height: 100vh;
     gap: 5px;
     padding: 0%;
 }
@@ -61,10 +61,10 @@ main {
 }
 .featured-image img {
     display: block;
-
     height: 100%;
     object-fit: cover;
-    margin-left: auto;max-width: 564px;
+    margin-left: auto;
+    max-width: 564px;
 }
 
 /* ======= Items ======= */
@@ -91,6 +91,7 @@ main {
     margin: 0;
     align-items: flex-end;
     border-bottom: #000000 solid 1px;
+    padding-bottom: 30px;
     width: 50%;
 }
 .post-meta {
@@ -131,26 +132,17 @@ main {
     height: 50px;
     gap: 10px;
     margin-left: 80px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     cursor: pointer;
-}
-.open-modal:hover {
-    background-color: #000000;
-    color: #FFFFFF;
 }
 .contact-button {
     display: flex;
     flex-direction: row;
     width: 60%;
-
-}
-.open-modal {
-    transition: transform 1.5s ease, box-shadow 1.5s ease;
 }
 .open-modal:hover {
     background-color: rgba(0, 0, 0, 1);
     color: #f0f0f0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
 }
 
 /* ======= Navigation ======= */
@@ -193,7 +185,7 @@ main {
 .next-arrow .miniature {
     position: absolute;
     top: -205%;
-    left: -0%;
+    left: 0%;
     transform: translateX(-50%) translateY(-50%);
     width: 81px;
     height: 79px;
@@ -245,7 +237,7 @@ main {
     width: 80%;
     animation: fadeIn 2.5s ease forwards;
     position: relative;
-    left: -6%;
+    left: -9%;
 }
 
 /* Flèche droite en hover */
@@ -266,8 +258,6 @@ main {
         opacity: 1;
     }
 }
-
-
 
 /* ======= Block Like to ======= */
 
@@ -296,4 +286,7 @@ main {
     object-fit: cover;
     width: 564px;
     height: 495px;
+}
+.menu-overlay {
+    display: none;
 }

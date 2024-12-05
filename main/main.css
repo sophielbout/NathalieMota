@@ -173,6 +173,43 @@ header {
   margin-top: 10px;
 }
 
+.card-photo img {
+  object-fit: cover;
+  width: 564px;
+  height: 495px;
+  display: block;
+}
+
+.card-photo {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-photo::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("http://nathaliemota.local/wp-content/themes/natmota/images/photo-hover.png") center center/cover no-repeat;
+  opacity: 0;
+  pointer-events: none;
+  animation: none;
+}
+
+.card-photo:hover::after {
+  animation: fadeInHover 0.5s forwards;
+}
+
+@keyframes fadeInHover {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .main-menu,
 .footer-nav {
   display: flex;
@@ -226,6 +263,7 @@ header {
   text-decoration: none;
   color: black;
   padding: 10px 15px;
+  transition: color 1s ease, font-weight 1s ease;
 }
 .nav-container ul li a:hover,
 .footer-nav ul li a:hover {
@@ -357,15 +395,21 @@ body {
   color: #000000;
   background-color: #D8D8D8;
   padding: 10px 20px;
-  text-transform: uppercase;
   cursor: pointer;
   border-radius: 0%;
+  transition: background-color 1.5s ease, color 1.5s ease;
+  border: none;
 }
 
 .wpcf7-form-control {
-  border: solid 1px #B8BBC2;
   border-radius: 8px;
   width: 263px;
+}
+
+.wpcf7 input[type=submit]:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  background-color: #000000;
+  color: #D8D8D8;
 }
 
 /* ======= Général ======= */
@@ -381,7 +425,8 @@ main {
   flex-direction: column;
   justify-content: space-between;
   margin: 0 auto;
-  width: 1440px;
+  width: 1148px;
+  padding: 0%;
 }
 
 .content {
@@ -410,7 +455,8 @@ main {
   font-weight: 400;
   width: 100%;
   height: auto;
-  gap: 21px;
+  gap: 5px;
+  padding: 0%;
 }
 
 .post-featured-image {
@@ -428,10 +474,10 @@ main {
 
 .featured-image img {
   display: block;
-  width: auto;
   height: 100%;
   object-fit: cover;
   margin-left: auto;
+  max-width: 564px;
 }
 
 /* ======= Items ======= */
@@ -477,7 +523,7 @@ main {
   line-height: 21px;
   align-items: center;
   justify-content: space-between;
-  padding: 0;
+  padding: 0%;
   box-sizing: border-box;
   border-bottom: #000000 solid 1px;
 }
@@ -498,13 +544,8 @@ main {
   height: 50px;
   gap: 10px;
   margin-left: 80px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-}
-
-.open-modal:hover {
-  background-color: #000000;
-  color: #FFFFFF;
 }
 
 .contact-button {
@@ -513,55 +554,124 @@ main {
   width: 60%;
 }
 
+.open-modal:hover {
+  background-color: rgb(0, 0, 0);
+  color: #f0f0f0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+}
+
 /* ======= Navigation ======= */
 .navigation-links {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: end;
-  gap: 20px;
   position: relative;
   height: 118px;
   width: 81px;
-  margin: 0;
-  padding-bottom: 15px;
+  margin: 0%;
+  padding: 0%;
 }
 
 .nav-arrow {
   position: relative;
   text-align: center;
   cursor: pointer;
+  z-index: 5;
+  width: 81px;
 }
 
+/* Miniature gauche */
 .prev-arrow .miniature {
   position: absolute;
-  top: -185%; /* Positionne la vignette au-dessus de la flèche */
-  left: -18%;
-  transform: translateX(-50%);
-  transform: translateY(-50%);
+  top: -205%;
+  left: 100%;
+  transform: translateX(-50%) translateY(-50%);
   width: 81px;
   height: 79px;
-  object-fit: cover;
-  display: none;
+  display: block;
+  opacity: 0;
+  pointer-events: none;
   z-index: 10;
+  animation: none;
+  will-change: opacity, transform;
 }
 
+/* Miniature droite */
 .next-arrow .miniature {
   position: absolute;
-  top: -185%; /* Positionne la vignette au-dessus de la flèche */
-  left: -196%;
-  transform: translateX(-50%);
-  transform: translateY(-50%);
+  top: -205%;
+  left: 0%;
+  transform: translateX(-50%) translateY(-50%);
   width: 81px;
   height: 79px;
-  object-fit: cover;
-  display: none;
+  opacity: 0;
+  display: block;
+  pointer-events: none;
   z-index: 10;
+  animation: none;
+  will-change: opacity, transform;
 }
 
+/* Afficher la miniature au survol */
 .nav-arrow:hover .miniature {
-  display: block; /* Affiche la vignette au survol */
+  animation: fadeAndGrow 1.5s ease forwards;
+  width: 81px;
+  height: 79px;
+  gap: 8px;
+  transform: translate(-50%, -50%);
 }
 
+/* Keyframes pour l’effet de croissance et fade-in */
+@keyframes fadeAndGrow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.01);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+.nav-arrow:hover .miniature {
+  animation: fadeAndGrow 0.8s ease-out forwards;
+  width: 81px;
+  height: 79px;
+}
+
+/* Flèches normales */
+.nav-arrow img {
+  transition: none;
+  opacity: 1;
+  animation: none;
+}
+
+/* Flèche gauche en hover */
+.prev-arrow:hover > img {
+  content: url("http://nathaliemota.local/wp-content/themes/natmota/images/Line-6H.png");
+  width: 80%;
+  animation: fadeIn 2.5s ease forwards;
+  position: relative;
+  left: -6%;
+}
+
+/* Flèche droite en hover */
+.next-arrow:hover > img {
+  content: url("http://nathaliemota.local/wp-content/themes/natmota/images/Line-7H.png");
+  width: 80%;
+  animation: fadeIn 2.5s ease forwards;
+  position: relative;
+  right: -10%;
+}
+
+/* Keyframes pour l’apparition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 /* ======= Block Like to ======= */
 .block-like-to {
   display: flex;
@@ -573,8 +683,8 @@ main {
   line-height: 27px;
   text-transform: uppercase;
   text-align: left;
-  width: 100%;
-  padding: 30px 0 40px 0;
+  width: 1148px;
+  padding: 30px 0px 40px 0px;
   height: auto;
   gap: 10px;
 }
@@ -613,6 +723,114 @@ main.wrapper {
 
 .content {
   flex: 1;
+}
+
+@media (max-width: 376px) {
+  .home {
+    width: 375px !important;
+  }
+  .items-photo H2 {
+    font-size: 46px !important;
+    font-weight: 400;
+    line-height: 48px;
+  }
+  main,
+  .block-image-and-info,
+  .container-single {
+    width: 375px !important;
+  }
+  /* ====== Block Image and Infos ====== */
+  .block-title-image {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100%;
+    height: auto;
+    padding: 0%;
+    margin: 0%;
+  }
+  .featured-image {
+    width: 100%;
+    height: auto;
+    order: -1;
+    width: 100% !important;
+  }
+  .featured-image img {
+    width: 265px !important;
+    margin: auto;
+    height: auto;
+  }
+  .items-photo {
+    margin: auto;
+    text-align: left;
+    order: 1;
+    width: 265px !important;
+  }
+  .block-info-photo {
+    justify-content: center;
+    margin: auto;
+    padding-bottom: 20px;
+  }
+  .featured-image img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    margin-left: auto;
+    max-width: 318px;
+  }
+  /* ======= Block Contact ======= */
+  .navigation-links {
+    display: none !important;
+  }
+  .contact-button {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    height: auto;
+    margin: auto !important;
+    width: 72% !important;
+    padding-bottom: 15px;
+  }
+  .block-contact > p {
+    text-align: center;
+    font-size: 14px;
+    line-height: 21px;
+    height: 118px;
+  }
+  .open-modal {
+    margin: 0 !important;
+    gap: 0px !important;
+    width: 263px !important;
+    height: 50px;
+    transition: transform 1.5s ease, box-shadow 1.5s ease;
+  }
+  .open-modal:hover {
+    background-color: rgb(0, 0, 0);
+    color: #f0f0f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+  }
+  /* ======= Block Like to ======= */
+  .block-like-to > p {
+    text-align: center;
+  }
+  .block-like-to {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0 !important;
+    max-width: 375px !important;
+    height: auto;
+    gap: 0;
+  }
+  .photos-apparentees {
+    display: flex;
+    flex-direction: column;
+    width: 375px !important;
+  }
+  .card-photo {
+    width: 318px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

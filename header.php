@@ -26,16 +26,35 @@
                 <img src="<?php echo esc_url(get_template_directory_uri() . '/images/logo.png'); ?>"  class="logo" alt="<?php bloginfo('name'); ?>">
             </a>
 
-            <!-- Conteneur du menu -->
-            <nav role="navigation" aria-label="<?php _e('Menu principal', 'NMota'); ?>" class="nav-container">
-                <?php
-                    wp_nav_menu([
-                        'theme_location' => 'main-menu',
-                        'container'      => false, // Pas de <div> autour du <ul> de navigation
-                        'menu_class'     => 'main-menu'
-                    ]);
-                ?>
-            </nav>
+           <!-- Menu classique Desktop -->
+<nav role="navigation" aria-label="<?php _e('Menu principal', 'NMota'); ?>" class="nav-container desktop-menu">
+    <?php
+        wp_nav_menu([
+            'theme_location' => 'main-menu',
+            'container'      => false, // Pas de <div> autour du <ul> de navigation
+            'menu_class'     => 'main-menu'
+        ]);
+    ?>
+</nav>
+
+<!-- Menu burger déroulant Mobile -->
+<div class="menu-overlay mobile-menu">
+    <?php
+        wp_nav_menu([
+            'theme_location' => 'main-menu',
+            'container'      => false, // Pas de <div> autour du <ul> de navigation
+            'menu_class'     => 'mobile-menu-items'
+        ]);
+    ?>
+</div>
+
+            <!-- Icône burger -->
+    <div class="burger-menu">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
 
         </div>
 

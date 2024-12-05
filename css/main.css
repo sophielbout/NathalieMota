@@ -173,6 +173,43 @@ header {
   margin-top: 10px;
 }
 
+.card-photo img {
+  object-fit: cover;
+  width: 564px;
+  height: 495px;
+  display: block;
+}
+
+.card-photo {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-photo::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("http://nathaliemota.local/wp-content/themes/natmota/images/photo-hover.png") center center/cover no-repeat;
+  opacity: 0;
+  pointer-events: none;
+  animation: none;
+}
+
+.card-photo:hover::after {
+  animation: fadeInHover 0.5s forwards;
+}
+
+@keyframes fadeInHover {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .main-menu,
 .footer-nav {
   display: flex;
@@ -221,16 +258,19 @@ header {
 
 .nav-container ul li a,
 .footer-nav ul li a {
-  font-size: "Space Mono";
+  font-family: "Space Mono", monospace; /* Correction : use 'font-family' */
   font-weight: 400;
   text-decoration: none;
   color: black;
   padding: 10px 15px;
-  transition: color 1s ease, font-weight 1s ease;
+  display: inline-block; /* Assure un comportement plus fluide pour hover */
+  transition: color 0.3s ease, transform 0.3s ease; /* Utilisation de 'transform' */
 }
+
 .nav-container ul li a:hover,
 .footer-nav ul li a:hover {
-  font-weight: 700;
+  color: rgb(0, 0, 0); /* Changement de couleur pour attirer l'œil */
+  transform: scale(1.1); /* Légère mise en évidence */
 }
 
 /* Règle séparée pour menu-item-99 */
@@ -240,6 +280,10 @@ header {
   color: black !important;
   text-decoration: none !important;
   pointer-events: auto;
+}
+
+.burger-icon {
+  display: none;
 }
 
 body {
@@ -336,7 +380,8 @@ body {
 }
 
 .wpcf7 input,
-.wpcf7 select {
+.wpcf7 select,
+.wpcf7 textarea {
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 8px;
@@ -347,7 +392,9 @@ body {
 }
 
 .wpcf7-textarea {
-  height: 210px;
+  min-height: 210px;
+  max-width: 269px;
+  resize: vertical;
 }
 
 .wpcf7 input[type=submit] {
@@ -370,14 +417,13 @@ body {
 }
 
 .wpcf7 input[type=submit]:hover {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
   background-color: #000000;
   color: #D8D8D8;
 }
 
 /* ======= Général ======= */
 html, body {
-  height: 100%;
+  height: 100vw;
   margin: 0;
   padding: 0;
 }
@@ -397,14 +443,14 @@ main {
 }
 
 .container-single {
-  width: 1140px !important;
+  width: 100vw !important;
 }
 
 /* ====== Block Image and Infos ====== */
 .block-image-and-info {
   display: flex;
   flex-direction: column;
-  width: 1148px;
+  width: 100vw;
 }
 
 /* ======= Photo ======= */
@@ -416,8 +462,8 @@ main {
   font-family: "Space Mono";
   color: black;
   font-weight: 400;
-  width: 100%;
-  height: auto;
+  width: 100vw;
+  height: 100vh;
   gap: 5px;
   padding: 0%;
 }
@@ -466,6 +512,7 @@ main {
   margin: 0;
   align-items: flex-end;
   border-bottom: #000000 solid 1px;
+  padding-bottom: 30px;
   width: 50%;
 }
 
@@ -507,13 +554,8 @@ main {
   height: 50px;
   gap: 10px;
   margin-left: 80px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
   cursor: pointer;
-}
-
-.open-modal:hover {
-  background-color: #000000;
-  color: #FFFFFF;
 }
 
 .contact-button {
@@ -522,14 +564,9 @@ main {
   width: 60%;
 }
 
-.open-modal {
-  transition: transform 1.5s ease, box-shadow 1.5s ease;
-}
-
 .open-modal:hover {
   background-color: rgb(0, 0, 0);
   color: #f0f0f0;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
 }
 
 /* ======= Navigation ======= */
@@ -623,7 +660,7 @@ main {
   width: 80%;
   animation: fadeIn 2.5s ease forwards;
   position: relative;
-  left: -6%;
+  left: -9%;
 }
 
 /* Flèche droite en hover */
@@ -674,6 +711,10 @@ main {
   height: 495px;
 }
 
+.menu-overlay {
+  display: none;
+}
+
 main.wrapper {
   display: flex;
   flex-direction: column;
@@ -695,6 +736,233 @@ main.wrapper {
 
 .content {
   flex: 1;
+}
+
+@media (max-width: 376px) {
+  .home {
+    width: 375px !important;
+    height: 1334px;
+  }
+  .items-photo h2 {
+    font-size: 46px !important;
+    font-weight: 400;
+    line-height: 48px;
+  }
+  main,
+  .block-image-and-info,
+  .container-single {
+    width: 375px !important;
+  }
+  /* ====== Header ====== */
+  .site-header {
+    width: 375px !important;
+    margin: 0;
+  }
+  header {
+    width: 375px !important;
+  }
+  .logo {
+    width: 138px;
+    padding-left: 40px;
+  }
+  /* ======= Menu Burger ======= */
+  .nav-container {
+    display: none; /* Cacher le menu */
+  }
+  .main-menu {
+    display: none;
+  }
+  .burger-menu {
+    display: flex;
+    top: 0;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+  .burger-menu div {
+    width: 100%;
+    height: 4px;
+    background-color: black;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  /* Style actif pour l'animation du menu burger */
+  .burger-menu.active div:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+  }
+  .burger-menu.active div:nth-child(2) {
+    opacity: 0;
+  }
+  .burger-menu.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+  /* Afficher le menu burger déroulant */
+  .menu-overlay {
+    display: none;
+    position: absolute;
+    top: 125px;
+    left: 0;
+    width: 100%;
+    background: #E00000;
+    z-index: 1000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 812px;
+    width: 375px;
+  }
+  .menu-overlay.active {
+    display: flex;
+  }
+  .menu-overlay a {
+    color: white;
+    text-decoration: none;
+    font-family: "Space Mono";
+    font-weight: 400;
+    font-size: 44px;
+    text-transform: uppercase;
+  }
+  .menu-overlay ul,
+  .mobile-menu ul {
+    list-style: none;
+    text-align: center;
+    padding: 0%;
+    margin: auto;
+    line-height: 65px;
+  }
+  /* ====== Block Image and Infos ====== */
+  .block-title-image {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+  }
+  .featured-image {
+    width: 100%;
+    height: auto;
+    order: -1;
+  }
+  .featured-image img {
+    width: 265px !important;
+    margin: auto;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    max-width: 318px;
+  }
+  .items-photo {
+    margin: auto;
+    text-align: left;
+    order: 1;
+    width: 265px !important;
+    border: none;
+    padding-bottom: 20px;
+  }
+  .block-info-photo {
+    justify-content: center;
+    margin: auto;
+    padding-bottom: 20px;
+  }
+  /* ======= Block Contact ======= */
+  .navigation-links {
+    display: none !important;
+  }
+  .contact-button {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    height: auto;
+    margin: auto !important;
+    width: 100% !important;
+    padding-bottom: 15px;
+    border-top: black 1px solid;
+  }
+  .block-contact > p {
+    text-align: center;
+    font-size: 14px;
+    line-height: 21px;
+    max-width: 375px !important;
+    height: 118px;
+  }
+  .open-modal {
+    margin: 0 !important;
+    gap: 0 !important;
+    width: 190px !important;
+    height: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
+  }
+  .modal-content {
+    width: 286px !important;
+    height: 583;
+  }
+  .modal-content img {
+    width: 140vw;
+  }
+  /* ======= Block Like to ======= */
+  .block-like-to > p {
+    text-align: center;
+  }
+  .block-like-to {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 !important;
+    max-width: 375px !important;
+    height: auto;
+    gap: 0;
+    text-align: center;
+  }
+  .photos-apparentees {
+    display: flex;
+    flex-direction: column;
+    width: 375px !important;
+    align-items: center;
+  }
+  .card-photo {
+    width: 318px !important;
+    object-fit: cover;
+    height: 279px;
+    margin-bottom: 20px;
+  }
+  .attachment-medium,
+  .size-medium {
+    width: 318px !important;
+    object-fit: cover;
+    height: 279px;
+  }
+  .card-photo::after {
+    content: "";
+    width: 318px !important;
+    height: 279px;
+  }
+  /* ======= Footer ======= */
+  .footer-container {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .footer-container ul {
+    width: 375px;
+    padding: 0 !important;
+  }
+  .footer-nav ul {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+  }
+  .footer-nav li {
+    text-align: center;
+    justify-content: center;
+    line-height: 50px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
