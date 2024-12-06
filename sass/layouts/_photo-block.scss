@@ -2,7 +2,7 @@
 // Photoblock Styles
 // ============================
 
-/* Style des filtres */
+/* ======= Style des filtres ======= */
 
 .photoblock-filters {
     display: flex;
@@ -15,7 +15,7 @@
     font-size: 16px;
 }
 
-/* Style de la galerie de photos */
+/* ======= Style de la galerie de photos ======= */
 .photoblock-gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -49,28 +49,68 @@
     overflow: hidden;
 }
 
-.card-photo::after {
-    content: '';
+/* ======= Infos affichées au hover ======= */
+.photo-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('http://nathaliemota.local/wp-content/themes/natmota/images/photo-hover.png') center center / cover no-repeat;
+    background: rgba(0, 0, 0, 0.5);
     opacity: 0;
-    pointer-events: none;
-    animation: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    transition: opacity 0.3s ease-in-out;
+
 }
 
-.card-photo:hover::after {
-    animation: fadeInHover 0.5s forwards;
+/* Afficher au survol */
+.card-photo:hover .photo-overlay {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.5) url('http://nathaliemota.local/wp-content/themes/natmota/images/Icon-eye-hover.png') center center / cover no-repeat; /* Icône centrée */
 }
 
-@keyframes fadeInHover {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+/* Texte des informations */
+.photo-reference,
+.photo-category {
+    color: white;
+    font-size: 14px;
+    line-height: 21px;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0 20px 10px 20px;
+}
+.photo-category {
+    justify-content: flex-end;
+    font-family: 'Space Mono';
+    font-weight: 400;
+}
+.photo-reference {
+    justify-content: flex-start;
+    font-family: 'Poppins';
+    font-weight: 500;
+}
+
+/* ======= Icone Fulscreen ======= */
+
+/* Style pour l'icône fullscreen */
+.card-photo .photo-overlay::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    background: url('http://nathaliemota.local/wp-content/themes/natmota/images/Icon-fullscreen.png') center center / cover no-repeat;
+    opacity: 0; /* Caché par défaut */
+    pointer-events: none; /* Rend l'élément insensible au clic par défaut */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Afficher l'icône au survol */
+.card-photo:hover .photo-overlay::before {
+    opacity: 1;
+    pointer-events: auto; /* Rendre cliquable */
 }

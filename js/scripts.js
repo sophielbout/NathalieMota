@@ -47,22 +47,48 @@ jQuery('a[href="#myModal"]').on('click', function(e) {
 });
 
 
-// Gestion du menu burger
 document.addEventListener('DOMContentLoaded', () => {
+    // Gestion des clics sur l'icône fullscreen
+    document.querySelectorAll('.card-photo .photo-overlay').forEach((overlay) => {
+        overlay.addEventListener('click', (event) => {
+            const target = event.target;
+            if (getComputedStyle(target, '::before').content !== 'none') {
+                event.preventDefault();
+                openFullscreenModal(overlay);
+            }
+        });
+    });
+
+    // Gestion du menu burger
     const burgerMenu = document.querySelector('.burger-menu');
     const menuOverlay = document.querySelector('.menu-overlay');
-
-    // Gestion des clics sur le menu burger
     burgerMenu.addEventListener('click', () => {
         burgerMenu.classList.toggle('active');
         menuOverlay.classList.toggle('active');
     });
-
-    // Optionnel : Fermer le menu lorsqu'un lien est cliqué
     menuOverlay.addEventListener('click', (e) => {
         if (e.target.tagName === 'A') {
             burgerMenu.classList.remove('active');
             menuOverlay.classList.remove('active');
         }
     });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    // L'élément HTML où afficher l'image
+    const imageContainer = document.querySelector('#random-image');
+
+    if (imageContainer) {
+        // Appeler le backend pour récupérer une image aléatoire
+        fetch('get-images.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.image) {
+                    imageContainer.src = data.image; // Mettre à jour la source de l'image
+                } else {
+                    console.error(data.error || "An error occurred");
+                }
+            })
+            .catch(error => console.error("Error fetching image:", error));
+    }
 });

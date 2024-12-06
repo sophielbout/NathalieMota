@@ -25,18 +25,31 @@
                 if ($query->have_posts()) :
                     while ($query->have_posts()) : $query->the_post();
 
-                        // Afficher l'image mise en avant si elle existe
-                        if (has_post_thumbnail()) :
-                            ?>
-                            <div class="card-photo">
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php the_post_thumbnail('medium'); ?>
-                                </a>
-                            </div>
-                            <?php
-                        endif;
+    // Récupérer les données dynamiques
+    $reference = get_post_meta(get_the_ID(), 'reference', true) ?: 'Non renseignée';
+    $categories = get_the_terms(get_the_ID(), 'categorie');
+    $category_name = $categories && !is_wp_error($categories) ? esc_html($categories[0]->name) : 'Non classé';
 
-                    endwhile;
+    if (has_post_thumbnail()) :
+        ?>
+        <div class="card-photo">
+            <a href="<?php the_permalink(); ?>">
+                <?php the_post_thumbnail('medium'); ?>
+                <!-- Conteneur pour l'effet de survol -->
+                <div class="photo-overlay">
+                    <span class="photo-reference"><?php echo esc_html($reference); ?></span>
+                    <span class="photo-category"><?php echo esc_html($category_name); ?></span>
+                </div>
+            </a>
+        </div>
+        <?php
+    endif;
+
+endwhile;
+
+
+
+
                 else :
                     echo '<p>Aucune image disponible pour cette catégorie.</p>';
                 endif;

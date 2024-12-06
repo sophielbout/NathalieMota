@@ -4,26 +4,17 @@
 
 
 .site-header {
+    max-width: 1440px;
+    margin: 0 auto;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
-    width: 100%;
 }
+
 header {
     width: 100%;
 }
 .logo {
     width: 245px;
-    padding-left: 130px;
-}
 
-
-// ============================
-// Image Hero
-// ============================
-
-.image-hero {
-    width: 1440px;
 }

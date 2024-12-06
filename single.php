@@ -8,7 +8,7 @@
 get_header();
 ?>
 
-<main>
+<main class="main-single">
 <div class="container-single">
 <div class="block-image-and-info">
     <!-- Bloc contenant les items et l'image côte à côte -->
