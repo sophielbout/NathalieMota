@@ -255,6 +255,28 @@ header {
   gap: 20px;
 }
 
+#load-more-photos {
+  display: block;
+  margin: 20px auto;
+  width: 272px;
+  height: 50px;
+  padding: 10px 20px;
+  background-color: #D8D8D8;
+  color: black;
+  font-family: "Space Mono";
+  font-size: 12px;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.5s ease;
+}
+
+#load-more-photos:hover {
+  background-color: #000000;
+  color: #fff;
+}
+
 .nav-container {
   display: flex;
   justify-content: flex-end;
@@ -808,7 +830,7 @@ main.wrapper {
   flex: 1;
 }
 
-/* Style pour la section hero */
+/* ======= Style pour la section hero ======= */
 .hero-image {
   max-width: 1440px;
   width: 100%;

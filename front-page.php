@@ -66,6 +66,11 @@ get_header();
             <?php get_template_part('templates_parts/photo-block-front'); ?>
         </div>
 
+        <div class="button-load-more">
+            <!-- Bouton Charger plus -->
+            <button id="load-more-photos" data-page="1">Charger plus</button>
+        </div>
+
     </div>
 
 
