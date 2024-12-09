@@ -65,3 +65,16 @@ function enqueue_custom_scripts() {
     wp_enqueue_script('custom-navigation', get_template_directory_uri() . '/js/navigation.js', ['jquery'], null, true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
+
+// Ajouter des tailles d'images personnalisées
+function ajouter_tailles_images_personnalisees() {
+    // Définir des tailles supplémentaires
+    add_image_size('taille-hero', 1440, 962, true);
+    add_image_size('taille-featured-image', 563, 0, false);
+    add_image_size('taille-photo-block', 564, 495, true);
+    add_image_size('taille-featured-mobile', 265, 0, false);
+}
+
+// Action pour ajouter les tailles lors de l'initialisation
+add_action('after_setup_theme', 'ajouter_tailles_images_personnalisees');
+?>

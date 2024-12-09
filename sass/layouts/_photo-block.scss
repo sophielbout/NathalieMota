@@ -104,8 +104,8 @@
     width: 34px;
     height: 34px;
     background: url('http://nathaliemota.local/wp-content/themes/natmota/images/Icon-fullscreen.png') center center / cover no-repeat;
-    opacity: 0; /* Caché par défaut */
-    pointer-events: none; /* Rend l'élément insensible au clic par défaut */
+    opacity: 0;
+    pointer-events: none;
     transition: opacity 0.3s ease-in-out;
 }
 
@@ -113,4 +113,21 @@
 .card-photo:hover .photo-overlay::before {
     opacity: 1;
     pointer-events: auto; /* Rendre cliquable */
+}
+
+
+/* ======= Style pour la section Photo-Block-Front ======= */
+
+.photos-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.photoblock-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1148px;
+    margin: auto;
+    gap: 20px;
 }
