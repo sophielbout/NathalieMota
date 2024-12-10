@@ -1,0 +1,7 @@
+// ============================
+// Filters Styles
+// ============================
+
+select option[value=""] {
+    display: none; /* Cache l'option dans la liste déroulante */
+}

@@ -33,7 +33,7 @@ if ($query->have_posts()) : ?>
                         <span class="photo-category">
                             <?php
                             // Récupérer et afficher la catégorie associée
-                            $categories = get_the_terms(get_the_ID(), 'categorie');
+                            $categories = get_the_terms(get_the_ID(), 'categories');
                             echo $categories && !is_wp_error($categories) ? esc_html($categories[0]->name) : 'Non classé';
                             ?>
                         </span>

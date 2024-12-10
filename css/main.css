@@ -503,6 +503,10 @@ body {
   color: #D8D8D8;
 }
 
+select option[value=""] {
+  display: none; /* Cache l'option dans la liste déroulante */
+}
+
 /* ======= Général ======= */
 html, body {
   height: 100vw;

@@ -60,7 +60,26 @@ get_header();
             <?php endif; ?>
         </div>
 
-        <div class="filtres"></div>
+
+
+        <div class="photo-filters">
+    <!-- Liste déroulante pour les Catégories -->
+    <select id="filter-categories">
+        <option value="" disabled selected>CATÉGORIE</option>
+    </select>
+
+    <!-- Liste déroulante pour les Formats -->
+    <select id="filter-formats">
+        <option value="" disabled selected>FORMAT</option>
+    </select>
+
+    <!-- Bouton pour appliquer les filtres -->
+    <button id="apply-filters">Appliquer les filtres</button>
+</div>
+
+
+
+        </div>
 
         <div class="photos-block">
             <?php get_template_part('templates_parts/photo-block-front'); ?>

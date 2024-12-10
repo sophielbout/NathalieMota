@@ -19,8 +19,8 @@ get_header();
                 $reference = get_post_meta(get_the_ID(), 'reference', true) ?: 'Non renseignée';
                 $type = get_post_meta(get_the_ID(), 'type', true) ?: 'Non renseigné';
                 $annees = get_post_meta(get_the_ID(), 'annee', true) ?: 'Non renseignée';
-                $categories = get_the_terms(get_the_ID(), 'categorie');
-                $formats = get_the_terms(get_the_ID(), 'format');
+                $categories = get_the_terms(get_the_ID(), 'categories');
+                $formats = get_the_terms(get_the_ID(), 'formats');
             ?>
                 <div>
                     <h2><?php the_title(); ?></h2>

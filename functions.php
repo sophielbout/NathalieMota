@@ -90,28 +90,27 @@ add_action('after_setup_theme', 'ajouter_tailles_images_personnalisees');
  * Fonction AJAX pour charger plus de photos
  */
 function natmota_load_more_photos() {
-    // Vérifier si le paramètre "page" est bien transmis
+    // Vérifier si "page" est bien transmis et valide
     if (!isset($_POST['page']) || !is_numeric($_POST['page'])) {
         wp_send_json_error(array('message' => 'Paramètre "page" manquant ou invalide.'));
     }
 
-    $paged = intval($_POST['page']); // Page demandée
-    if ($paged < 1) $paged = 1; // Sécurité pour éviter des valeurs négatives
+    $paged = intval($_POST['page']);
 
-    // Arguments pour la requête WP_Query
+    // Arguments pour WP_Query
     $args = array(
         'post_type' => 'photo',
-        'posts_per_page' => 8, // Nombre de photos par page
+        'posts_per_page' => 8,
         'orderby' => 'date',
         'order' => 'DESC',
-        'paged' => $paged,
+        'paged' => $paged, // Page actuelle
     );
 
     $query = new WP_Query($args);
 
-    // Vérifier si des posts existent
+    // Si des posts sont trouvés
     if ($query->have_posts()) {
-        ob_start(); // Commencer à capturer la sortie
+        ob_start(); // Commence à capturer la sortie
 
         while ($query->have_posts()) : $query->the_post();
             ?>
@@ -124,7 +123,7 @@ function natmota_load_more_photos() {
                         </span>
                         <span class="photo-category">
                             <?php
-                            $categories = get_the_terms(get_the_ID(), 'categorie');
+                            $categories = get_the_terms(get_the_ID(), 'categories');
                             echo $categories && !is_wp_error($categories) ? esc_html($categories[0]->name) : 'Non classé';
                             ?>
                         </span>
@@ -134,22 +133,22 @@ function natmota_load_more_photos() {
             <?php
         endwhile;
 
-        $content = ob_get_clean(); // Récupérer le contenu capturé
+        $content = ob_get_clean(); // Capture la sortie
 
-        // Vérifier s'il reste d'autres pages à charger
+        // Vérifie s'il reste des photos à charger
         $has_more = $paged < $query->max_num_pages;
 
         wp_send_json_success(array(
             'content' => $content,
-            'has_more' => $has_more, // Indiquer s'il reste des photos
+            'has_more' => $has_more,
         ));
     } else {
         wp_send_json_error(array('message' => 'Aucune photo trouvée.'));
     }
 
-    wp_die(); // Toujours arrêter l'exécution PHP après une réponse AJAX
+    // Toujours arrêter l'exécution de PHP après une réponse AJAX
+    wp_die();
 }
-
 
 add_action('wp_ajax_load_more_photos', 'natmota_load_more_photos');
 add_action('wp_ajax_nopriv_load_more_photos', 'natmota_load_more_photos');
@@ -169,3 +168,76 @@ add_action('wp_enqueue_scripts', function () {
         'url' => admin_url('admin-ajax.php'),
     ));
 });
+
+
+add_action('wp_enqueue_scripts', function () {
+    // Charger Select2 CSS et JS
+    wp_enqueue_style(
+        'select2-css',
+        'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css'
+    );
+    wp_enqueue_script(
+        'select2-js',
+        'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js',
+        array('jquery'),
+        null,
+        true
+    );
+
+    // Charger le script personnalisé pour gérer les filtres
+    wp_enqueue_script(
+        'natmota-filters',
+        get_template_directory_uri() . '/js/filters.js',
+        array('jquery', 'select2-js'),
+        null,
+        true
+    );
+
+    // Passer l’URL AJAX au script
+    wp_localize_script('natmota-filters', 'natmota_ajax', array(
+        'url' => admin_url('admin-ajax.php'),
+    ));
+});
+
+
+
+
+add_action('wp_ajax_get_taxonomies_terms', 'natmota_get_taxonomies_terms');
+add_action('wp_ajax_nopriv_get_taxonomies_terms', 'natmota_get_taxonomies_terms');
+
+function natmota_get_taxonomies_terms() {
+    $results = array();
+
+    // Récupérer les termes pour la taxonomie "categorie"
+    $categories = get_terms(array(
+        'taxonomy' => 'categories',
+        'hide_empty' => true,
+    ));
+
+    if (!is_wp_error($categories) && !empty($categories)) {
+        $results['categories'] = array_map(function ($term) {
+            return array(
+                'id' => $term->slug,
+                'name' => $term->name,
+            );
+        }, $categories);
+    }
+
+    // Récupérer les termes pour la taxonomie "format"
+    $formats = get_terms(array(
+        'taxonomy' => 'formats',
+        'hide_empty' => true,
+    ));
+
+    if (!is_wp_error($formats) && !empty($formats)) {
+        $results['formats'] = array_map(function ($term) {
+            return array(
+                'id' => $term->slug,
+                'name' => $term->name,
+            );
+        }, $formats);
+    }
+
+    wp_send_json_success($results);
+    wp_die();
+}
