@@ -61,23 +61,41 @@ get_header();
         </div>
 
 
-
         <div class="photo-filters">
-    <!-- Liste déroulante pour les Catégories -->
-    <select id="filter-categories">
-        <option value="" disabled selected>CATÉGORIE</option>
-    </select>
+            <div class="filters">
 
-    <!-- Liste déroulante pour les Formats -->
-    <select id="filter-formats">
-        <option value="" disabled selected>FORMAT</option>
-    </select>
+                <div id="left-filters">
+                    <select id="filter-categories" class="select2" onchange="applyFilters()">
+                        <option value="" disabled selected>CATÉGORIES</option>
+                        <?php
+                        $categories = get_terms(['taxonomy' => 'categories', 'hide_empty' => true]);
+                        foreach ($categories as $category) {
+                            echo "<option value='{$category->slug}'>{$category->name}</option>";
+                        }
+                        ?>
+                    </select>
 
-    <!-- Bouton pour appliquer les filtres -->
-    <button id="apply-filters">Appliquer les filtres</button>
-</div>
 
+                    <select id="filter-formats" class="select2" onchange="applyFilters()">
+                        <option value="" disabled selected>FORMATS</option>
+                        <?php
+                        $formats = get_terms(['taxonomy' => 'formats', 'hide_empty' => true]);
+                        foreach ($formats as $format) {
+                            echo "<option value='{$format->slug}'>{$format->name}</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
 
+                <div>
+                    <select id="filter-sort" class="select2" onchange="applyFilters()">
+                        <option value="" disabled selected>TRIER PAR</option>
+                        <option value="desc">Du plus récent au plus ancien</option>
+                        <option value="asc">Du plus ancien au plus récent</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
         </div>
 

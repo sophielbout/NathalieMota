@@ -96,17 +96,6 @@ p.text-space-mono {
   height: 100%;
 }
 
-:root {
-  --color-1: #E00000;
-  --color-2: #000000;
-  --color-3: #D8D8D8;
-  --color-4: #FE5858;
-  --color-5: #313144;
-  --color-6: #E5E5E5;
-  --color-7: #FFD6D6;
-  --color-8: #C4C4C4;
-}
-
 .site-header {
   max-width: 1440px;
   margin: 0 auto;
@@ -126,6 +115,16 @@ header {
 .contentinfo {
   display: flex;
   width: 100%;
+}
+
+.footer-container {
+  margin: auto;
+  width: 1148px !important;
+}
+
+.footer-container ul {
+  width: 100%;
+  padding: 0 !important;
 }
 
 /* ======= Style des filtres ======= */
@@ -163,7 +162,7 @@ header {
 }
 
 .card-photo img {
-  object-fit: cover;
+  object-fit: contain;
   width: 564px;
   height: 495px;
   display: block;
@@ -503,8 +502,144 @@ body {
   color: #D8D8D8;
 }
 
-select option[value=""] {
-  display: none; /* Cache l'option dans la liste déroulante */
+.select2-results__option[aria-disabled=true] {
+  display: none !important;
+}
+
+.select2-container .select2-selection__arrow {
+  display: none !important;
+}
+
+#apply-filters {
+  background-color: #FFFFFF;
+  border: solid 1.3px #B8BBC2;
+  padding: 11px 24px 11px 24px;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.48px;
+  line-height: 18px;
+  color: #313144;
+  cursor: pointer;
+  text-align: left;
+  width: 260px;
+  height: 42px;
+  background-image: url("../images/chevron-down-s.png");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px 12px;
+  transition: all 0.3s ease;
+}
+
+.filters {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  height: 42px;
+  width: 100%;
+}
+
+.filters > div {
+  flex-shrink: 0; /* Empêche les div enfants de rétrécir */
+}
+
+.filters > div:last-child {
+  margin-left: auto;
+}
+
+#left-filters {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.filters select {
+  width: 260px;
+  height: 42px;
+  padding: 11px 24px 11px 24px;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.48px;
+  color: #313144;
+  background-color: #FFFFFF;
+  border: 1px solid #B8BBC2;
+  border-radius: 8px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  pointer-events: none; /* Désactive les clics sur le select natif */
+  position: absolute; /* Supprime l'influence sur la mise en page */
+  opacity: 0; /* Rend le select natif invisible */
+  z-index: -1; /*
+
+/* Chevron personnalisé */
+  background-image: url("../images/chevron-down-s.png");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px 12px;
+}
+
+.select2-container--default {
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.48px;
+  color: #313144;
+}
+
+/* Sélecteur modifié par Select2 */
+.select2-container .select2-selection--single {
+  width: 260px !important;
+  height: 42px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 11px 24px 11px 24px;
+  border: 1px solid #B8BBC2;
+  border-radius: 8px !important;
+  background-color: #FFFFFF;
+  background-image: url("../images/chevron-down-s.png") !important;
+  background-repeat: no-repeat;
+  background-position: right 12px center !important;
+  background-size: 12px 12px !important;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+  padding-left: 0% !important;
+}
+
+.select2-container .select2-selection--single:hover {
+  border: solid 1px #215AFF;
+}
+
+/* Options par défaut fond blanc */
+.select2-container--default .select2-results__option {
+  background-color: #FFFFFF !important;
+  color: #313144 !important;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Options sélectionnées */
+.select2-container--default .select2-results__option[aria-selected=true] {
+  background-color: #E00000 !important;
+  color: #FFFFFF !important;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Options survolées */
+.select2-container--default .select2-results__option:hover {
+  background-color: #FFD6D6 !important;
+  color: #313144 !important;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Options survolées */
+.select2-container--default .select2-results__option:active {
+  transition: background-color 0.5s ease, color 0.52s ease;
+  background-color: #FE5858 !important;
 }
 
 /* ======= Général ======= */
@@ -834,6 +969,12 @@ main.wrapper {
   flex: 1;
 }
 
+.fp-block-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 /* ======= Style pour la section hero ======= */
 .hero-image {
   max-width: 1440px;
@@ -855,6 +996,17 @@ main.wrapper {
   transform: translate(-50%, -50%);
   z-index: 10;
   pointer-events: none;
+}
+
+/* ======= Style pour la section Filters ======= */
+.photo-filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 1148px;
+  padding: 60px 0px 20px 0px;
+  margin: auto;
 }
 
 @media (max-width: 376px) {

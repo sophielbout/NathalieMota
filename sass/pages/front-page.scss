@@ -26,6 +26,12 @@
     flex: 1;
 }
 
+.fp-block-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 /* ======= Style pour la section hero ======= */
 .hero-image {
     max-width: 1440px;
@@ -47,4 +53,15 @@
     transform: translate(-50%, -50%);
     z-index: 10;
     pointer-events: none;
+}
+
+/* ======= Style pour la section Filters ======= */
+.photo-filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 1148px;
+    padding: 60px 0px 20px 0px;
+    margin: auto;
 }
