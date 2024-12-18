@@ -25,7 +25,11 @@
     </div>
 </footer>
 
+<!-- Modale menu et bouton -->
 <?php get_template_part( 'templates_parts/modale' ); ?>
+
+<!-- Lightbox -->
+<?php get_template_part( 'templates_parts/lightbox' ); ?>
 
 </div> <!-- Fin de .site-wrapper -->
 

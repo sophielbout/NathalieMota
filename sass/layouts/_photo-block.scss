@@ -69,7 +69,7 @@
 /* Afficher au survol */
 .card-photo:hover .photo-overlay {
     opacity: 1;
-    background: rgba(0, 0, 0, 0.5) url('http://nathaliemota.local/wp-content/themes/natmota/images/Icon-eye-hover.png') center center / cover no-repeat; /* Icône centrée */
+    background: rgba(0, 0, 0, 0.5);
 }
 
 /* Texte des informations */
@@ -103,7 +103,7 @@
     right: 10px;
     width: 34px;
     height: 34px;
-    background: url('http://nathaliemota.local/wp-content/themes/natmota/images/Icon-fullscreen.png') center center / cover no-repeat;
+
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease-in-out;
@@ -152,4 +152,31 @@
 #load-more-photos:hover {
     background-color: #000000;
     color: #fff;
+}
+
+
+/* ======= Style pour les icons d'ouvertures de lightbox et singles ======= */
+.icon-fullscreen {
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    top: 10px;
+    left: 510px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.icon-eye {
+    width: 46px;
+    height: 31px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 0 10px;
 }
