@@ -30,7 +30,7 @@
                             if (response.data.has_more) {
                                 button.text('Charger plus');
                             } else {
-                                button.text('Toutes les photos sont affichées');
+                                button.text('Fin du portfolio');
                                 button.prop('disabled', true);
                             }
                         } else {

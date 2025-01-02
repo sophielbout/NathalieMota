@@ -13,53 +13,46 @@ get_header();
 
 <main class="main-front-page">
     <div class="fp-block-group">
-        <div><?php
-            // Chemin absolu du dossier contenant les images
-            $directory = 'C:/Users/sophi/Bureau/OPENCLASSROOMS/local/nathaliemota/app/public/wp-content/uploads/2024/11';
+        <div>
+                <?php
+                    // Récupérer les posts de type "photo"
+                    $posts = get_posts([
+                        'post_type'      => 'photo',
+                        'posts_per_page' => -1, // Tous les posts
+                        'orderby'        => 'date',
+                        'order'          => 'DESC',
+                    ]);
 
-            // Vérifier si le dossier existe
-            if (is_dir($directory)) {
-                // Lister uniquement les fichiers image valides
-                $images = array_filter(scandir($directory), function ($file) use ($directory) {
-                    $filePath = $directory . '/' . $file;
-                    return is_file($filePath) && preg_match('/\.(jpg|jpeg|png|gif)$/i', $file);
-                });
+                    $images = [];
 
-                // Filtrer les images qui font exactement 1440 pixels de large
-                $filteredImages = array_filter($images, function ($file) use ($directory) {
-                    $filePath = $directory . '/' . $file;
+                    // Parcourir les posts pour récupérer uniquement les miniatures de taille 'taille-hero'
+                    foreach ($posts as $post) {
+                        $thumbnail_url = get_the_post_thumbnail_url($post->ID, 'taille-hero'); // Taille spécifique
 
-                    // Obtenir les dimensions de l'image
-                    [$width, $height] = getimagesize($filePath);
+                        if ($thumbnail_url) {
+                            $images[] = $thumbnail_url; // Ajouter l'URL à la liste
+                        }
+                    }
 
-                    // Retourner uniquement les images de 1440 pixels de large
-                    return $width === 1440;
-                });
+                    // Sélectionner une image aléatoire
+                    if (!empty($images)) {
+                        $heroImage = $images[array_rand($images)];
+                    } else {
+                        $heroImage = ''; // Aucune image trouvée
+                    }
+                    ?>
 
-                // Vérifier qu'il y a des images valides après filtrage
-                if (!empty($filteredImages)) {
-                    // Générer l'URL complète pour l'image aléatoire
-                    $randomImage = $filteredImages[array_rand($filteredImages)];
-                    $heroImage = get_site_url() . '/wp-content/uploads/2024/11/' . $randomImage;
-                } else {
-                    $heroImage = ''; // Aucun fichier valide trouvé
-                    error_log('Aucune image de 1440px trouvée dans le dossier : ' . $directory);
-                }
-            } else {
-                $heroImage = ''; // Dossier introuvable
-                error_log('Le dossier des images n’existe pas : ' . $directory);
-            }
-            ?>
+                    <!-- HTML pour l'image hero -->
+                    <?php if (!empty($heroImage)): ?>
+                        <div class="hero-image" style="background-image: url('<?php echo esc_url($heroImage); ?>');">
+                            <!-- Image superposée -->
+                            <img src="http://nathaliemota.local/wp-content/themes/natmota/images/titre-header.png" alt="Titre Header" class="overlay-title">
+                        </div>
+                    <?php else: ?>
+                        <p>Aucune image disponible pour l'en-tête.</p>
+                    <?php endif; ?>
 
-            <!-- HTML pour l'image hero -->
-            <?php if (!empty($heroImage)): ?>
-                <div class="hero-image" style="background-image: url('<?php echo esc_url($heroImage); ?>');">
-                    <!-- Image superposée -->
-                    <img src="http://nathaliemota.local/wp-content/themes/natmota/images/titre-header.png" alt="Titre Header" class="overlay-title">
-                </div>
-            <?php endif; ?>
         </div>
-
 
         <div class="photo-filters">
             <div class="filters">
@@ -87,7 +80,7 @@ get_header();
                     </select>
                 </div>
 
-                <div>
+                <div id="right-filters">
                     <select id="filter-sort" class="select2" onchange="applyFilters()">
                         <option value="" disabled selected>TRIER PAR</option>
                         <option value="desc">Du plus récent au plus ancien</option>
@@ -100,8 +93,40 @@ get_header();
         </div>
 
         <div class="photos-block">
-            <?php get_template_part('templates_parts/photo-block-front'); ?>
+    <?php
+    // Définir les arguments pour récupérer toutes les photos
+    $args = [
+        'post_type'      => 'photo',
+        'posts_per_page' => -1, // Affiche tous les posts
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    ];
+
+    // Log pour vérifier les arguments passés à WP_Query
+    error_log('Arguments utilisés pour WP_Query dans front-page : ' . print_r($args, true));
+
+    // Créer la requête WP_Query
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) : ?>
+        <div class="photoblock-gallery">
+            <?php while ($query->have_posts()) : $query->the_post(); ?>
+                <?php
+                // Log pour vérifier chaque post affiché
+                get_template_part('templates_parts/photo-block'); // Insère un seul bloc photo
+                ?>
+            <?php endwhile; ?>
         </div>
+    <?php else : ?>
+        <p>Aucune photo trouvée.</p>
+    <?php endif;
+
+    // Réinitialiser les données de la requête WP
+    wp_reset_postdata();
+    ?>
+</div>
+
+
 
         <div class="button-load-more">
             <!-- Bouton Charger plus -->

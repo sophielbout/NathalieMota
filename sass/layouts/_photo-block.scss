@@ -16,11 +16,6 @@
 }
 
 /* ======= Style de la galerie de photos ======= */
-.photoblock-gallery {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
 
 .photoblock-item {
     text-align: center;
@@ -125,12 +120,14 @@
 }
 
 .photoblock-gallery {
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
     width: 1148px;
     margin: auto;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
+
 
 #load-more-photos {
     display: block;

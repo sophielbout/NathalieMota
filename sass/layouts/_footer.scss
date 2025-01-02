@@ -5,11 +5,20 @@
     display: flex;
     width: 100%;
 }
-.footer-container {
-    margin: auto;
-    width: 1148px !important;
+footer {
+    border-top: solid 1px rgb(0, 0, 0);
+    width: 100%;
+    justify-content: center;
+    display: flex;
 }
+.footer-container {
+    display: flex;
 
+    width: 1148px;
+    height: 62px;;
+    padding-top: 5px;
+    justify-content: center;
+}
 .footer-container ul {
     width: 100%;
     padding: 0 !important;

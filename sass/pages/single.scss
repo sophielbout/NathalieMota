@@ -26,6 +26,26 @@ html, body {
 .container-single {
     width: 100% !important;
 }
+/* ====== Hero Image =======*/
+.hero-image {
+    background-size: cover; /* L'image couvre tout le conteneur */
+    background-position: center; /* Centrée dans le conteneur */
+    width: 100%; /* Adapte à la largeur de l'écran */
+    height: 60vh; /* Ajuste la hauteur relative à la hauteur de l'écran */
+    position: relative; /* Permet de positionner des éléments enfants */
+}
+
+.overlay-title {
+    position: absolute;
+    top: 50%; /* Centre verticalement */
+    left: 50%; /* Centre horizontalement */
+    transform: translate(-50%, -50%);
+    width: 80%; /* Adapte la largeur */
+    text-align: center; /* Centre le texte */
+    color: white; /* Assure une bonne lisibilité */
+    z-index: 10;
+}
+
 /* ====== Block Image and Infos ====== */
 .block-image-and-info {
     display: flex;
@@ -149,7 +169,7 @@ html, body {
 .navigation-links {
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: flex-end;
     position: relative;
     height: 118px;
     width: 81px;
@@ -167,8 +187,8 @@ html, body {
 /* Miniature gauche */
 .prev-arrow .miniature {
     position: absolute;
-    top: -205%;
-    left: +100%;
+    top: -45px;
+    left: 40px;
     transform: translateX(-50%) translateY(-50%);
     width: 81px;
     height: 79px;
@@ -183,8 +203,8 @@ html, body {
 /* Miniature droite */
 .next-arrow .miniature {
     position: absolute;
-    top: -205%;
-    left: 0%;
+    top: -45px;
+    left: 0px;
     transform: translateX(-50%) translateY(-50%);
     width: 81px;
     height: 79px;

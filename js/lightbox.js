@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
             src: icon.dataset.src,
             ref: icon.dataset.ref,
             cat: icon.dataset.cat,
+            title: icon.dataset.title || "Titre non disponible",
         });
 
         // Associer l'événement de clic pour ouvrir la lightbox
@@ -34,14 +35,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const content = `
-            <img src="${photo.src}" alt="Photo en grand" class="lightbox-hero" />
-            <div class="lightbox-info">
-                <div class="info-wrapper">
-                    <p class="reference">${photo.ref}</p>
-                    <p class="category">${photo.cat}</p>
-                </div>
+        <img src="${photo.src}" alt="Photo en grand" class="lightbox-hero" />
+        <div class="lightbox-info">
+            <h2 class="lightbox-photo-title">${photo.title || 'Titre non disponible'}</h2>
+            <div id="lightbox-ref-cat">
+                <p class="reference">${photo.ref}</p>
+                <p class="category">${photo.cat}</p>
             </div>
-        `;
+        </div>
+    `;
 
         // Injecter et loguer le contenu
         console.log("Contenu injecté :", content);

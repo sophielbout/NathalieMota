@@ -26,7 +26,7 @@ get_header();
                     <h2><?php the_title(); ?></h2>
                     <p class="info-photo">Référence : <?php echo esc_html($reference); ?></p>
                     <p class="info-photo">Type : <?php echo esc_html($type); ?></p>
-                    <p class="info-photo">Année : <?php echo esc_html($annees); ?></p>
+                    <p class="info-photo">Année : <?php echo esc_html(get_the_date('Y')); ?></p>
                     <p class="info-photo">Catégorie :
                         <?php
                         echo $categories && !is_wp_error($categories)
@@ -121,9 +121,40 @@ get_header();
 
         <p>VOUS AIMEREZ AUSSI</p>
 
-        <div class="photos-apparentees">
-            <?php get_template_part( 'templates_parts/photo-block' ); ?>
+        <div class="photos-block">
+    <?php
+    $args = [
+        'post_type'      => 'photo', // Type de post "photo"
+        'posts_per_page' => 2, // Limite à 2 photos
+        'orderby'        => 'rand', // Affiche les posts de manière aléatoire
+        'post__not_in'   => [get_the_ID()], // Exclut le post actuel
+        'tax_query'      => [ // Requête pour la taxonomie "categories"
+            [
+                'taxonomy' => 'categories',
+                'field'    => 'term_id',
+                'terms'    => wp_get_post_terms(get_the_ID(), 'categories', ['fields' => 'ids']),
+            ],
+        ],
+    ];
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) : ?>
+        <div class="photoblock-gallery">
+            <?php while ($query->have_posts()) : $query->the_post(); ?>
+                <?php get_template_part('templates_parts/photo-block'); // Insère un seul bloc ?>
+            <?php endwhile; ?>
         </div>
+    <?php else : ?>
+        <p>Aucune photo trouvée.</p>
+    <?php endif;
+
+    wp_reset_postdata(); // Réinitialise la requête WP
+    ?>
+</div>
+
+
+
 
     </div>
 
