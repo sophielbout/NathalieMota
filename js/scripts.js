@@ -13,27 +13,6 @@
         }
     });
 
-
-   /* document.addEventListener('DOMContentLoaded', () => {
-        // L'élément où mettre le background dynamique
-        const heroImage = document.querySelector('.hero-image');
-
-        if (heroImage) {
-            // Appeler le backend pour récupérer une image aléatoire
-            fetch('get-images.php')
-                .then(response => response.json())
-                .then(data => {
-                    if (data.image) {
-                        // Mettre à jour le background-image dynamiquement
-                        heroImage.style.backgroundImage = `url(${data.image})`;
-                    } else {
-                        console.error(data.error || "An error occurred");
-                    }
-                })
-                .catch(error => console.error("Error fetching image:", error));
-        }
-    });*/
-
 document.addEventListener("DOMContentLoaded", () => {
     // Gestion de l'icône single (Icon-eye)
     document.querySelectorAll('.card-photo .icon-eye').forEach(icon => {

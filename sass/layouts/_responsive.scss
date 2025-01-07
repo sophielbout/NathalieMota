@@ -20,6 +20,27 @@
         width: 375px !important;
     }
 
+    .container p {
+        width: 318px !important;
+    }
+
+    H1 {
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 41px;
+    }
+
+    H2 {
+        font-size: 46px;
+        font-weight: 400;
+        line-height: 48px;
+    }
+
+    H3 {
+        font-size: 27px;
+        font-weight: 400;
+        line-height: 27px;
+    }
 
     /* ====== Header ====== */
     .site-header {
@@ -31,6 +52,7 @@
         width: 375px !important;
         height: 72px;
         align-content: center;
+        margin-bottom: 40px;
     }
 
     .logo {
@@ -83,7 +105,7 @@
     .menu-overlay {
         display: none;
         position: absolute;
-        top: 125px;
+        top: 120px;
         left: 0;
         width: 100%;
         background: #E00000;
@@ -105,17 +127,16 @@
         font-family: 'Space Mono';
         font-weight: 400;
         font-size: 44px;
-
         text-transform: uppercase;
     }
     .menu-overlay ul,
     .mobile-menu ul {
-    list-style: none;
-    text-align: center;
-    padding: 0%;
-    margin: auto;
-    line-height: 65px;
-}
+        list-style: none;
+        text-align: center;
+        padding: 0%;
+        margin: auto;
+        line-height: 65px;
+    }
 
     /* ====== Block Image and Infos ====== */
     .block-title-image {
@@ -163,46 +184,88 @@
     .navigation-links {
         display: none !important;
     }
+
     .contact-button {
         display: flex !important;
         flex-direction: column !important;
-        align-items: center !important;
+        align-items: left !important;
         height: auto;
         margin: auto !important;
         width: 100% !important;
-        padding-bottom: 15px;
+        padding-left: 50px;
+    }
+
+    .block-contact {
+        padding-top: 20px;
+        padding-bottom: 30px;
         border-top: black 1px solid;
+        height: auto;
     }
     .block-contact > p {
-        text-align: center;
+        text-align: left;
         font-size: 14px;
         line-height: 21px;
         max-width: 375px !important;
         height: 118px;
     }
+
     .open-modal {
         margin: 0 !important;
         gap: 0 !important;
-        width: 190px !important;
+        width: 263px !important;
         height: 50px;
         cursor: pointer;
         transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
     }
+
+    .modal-content .close {
+        display: none !important;
+    }
+
+    #myModal {
+        position: absolute;
+        width: 100vw;
+        height:100%;
+        margin: 0;
+        width: 375px !important;
+    }
+
+    .modal-overlay {
+        position: fixe;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 999;
+    }
+
     .modal-content {
-        width: 286px !important;
-        height: 583;
-    }
-    .modal-content img {
-        width: 140vw;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        max-width: 90%;
+        width: 286px;
+        height: auto;
+        overflow: hidden;
+        padding-top: 0;
     }
 
+    .modal-hero {
+        height: 55px;
+        width: 190%;
+        margin-bottom: 0;
+    }
 
- /* ======= Lightbox ======= */
+    /* ======= Lightbox ======= */
     #lightboxModal {
         top: 0;
         left: 0;
         width: 375px;
     }
+
     .lightbox-content {
         position: absolute;
         left: 50%;
@@ -210,6 +273,7 @@
         transform: translateX(-50%);
         z-index: 2000;
     }
+
     .lightbox-content .close {
         display: none;
     }
@@ -222,6 +286,7 @@
         max-width: 318px;
         top: 20%;
     }
+
     .lightbox-nav {
         position: absolute;
         top: -5%;
@@ -233,6 +298,7 @@
         z-index: 2000;
         pointer-events: none;
     }
+
     .lightbox-nav button {
         pointer-events: all;
         background: none;
@@ -245,117 +311,133 @@
         align-items: center;
         gap: 5px;
     }
+
     .lightbox-nav .prev {
         margin: 0;
         left: 0;
     }
+
     .lightbox-nav .next {
         margin: 0;
         right: 0;
     }
 
-
     /* ======= Footer ======= */
     .footer-container {
-        position: relative;
-        clear: both;
-        margin-top: 80px;
-    }
-    .footer-container ul {
-        width: 375px;
-        padding: 0 !important;
-        max-height: 208px;
-    }
-    .footer-nav ul {
-        flex-direction: column;
-        text-align: center;
+        display: flex;
         justify-content: center;
-        gap: 0;
+        align-items: center;
+        flex-direction: column;
+        margin-top: -10px;
+        height: 208px;
+        position: relative;
     }
+
+    .footer-container ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 375px;
+        padding: 0;
+        max-height: 208px;
+        margin: 0;
+    }
+
+    .footer-nav ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin: 0;
+    }
+
     .footer-nav li {
         text-align: center;
-        justify-content: center;
-        line-height: 50px;
+        line-height: 30px;
+        height: 30px;
     }
 
-    /* ======= Front-page =======*/
-    header {
-        box-shadow:none;
+
+    /* ======= HERO IMAGE =======*/
+    .hero-image {
+        height: 40vh;
+    }
+
+    .overlay-title {
+        font-size: 16px;
+        width: 90%;
+    }
+
+    /* ======= BOUTON "CHARGER PLUS" =======*/
+    .button-load-more button {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        margin: 10px 0;
+    }
+
+    .filters select {
+        position: relative !important;
+        opacity: 1 !important;
+        z-index: 1 !important;
+        pointer-events: auto !important;
+    }
+
+    /* ======= FILTRES =======*/
+
+    .photo-filters {
+        height: auto;
+        padding-top: 20px;
+        padding-bottom: 0px;
         margin-bottom: 0;
-
-    }
-        /* HERO IMAGE */
-            .hero-image {
-                height: 40vh;
-            }
-
-            .overlay-title {
-                font-size: 16px;
-                width: 90%;
-            }
-
- /* BOUTON "CHARGER PLUS" */
- .button-load-more button {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    margin: 10px 0;
-}
-
-.filters select {
-    position: relative !important;
-    opacity: 1 !important;
-    z-index: 1 !important;
-    pointer-events: auto !important;
-}
-
-    /* FILTRES */
-
-        .photo-filters {
-                height: auto;
-                padding-top: 40px;
-        }
-        .filters {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            align-items: stretch;
-            width: 375px !important;
-            height: auto;
-        }
-
-        #left-filters {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        #right-filters {
-            margin: auto;
-            width: 260px;
-            align-items: center;
-            margin-top: 4px;
-        }
-
-        .select2-container .select2-selection--single {
-            width: 100% !important;
-        }
-
-
-
-        /* GALERIE DE PHOTOS */
-       .photoblock-gallery {
-        grid-template-columns: 1fr; /* Une seule colonne pour les écrans étroits */
-        gap: 15px;
-        margin: 10px;
     }
 
-     /* ======= Block Like to - Affichage des photo-block ======= */
+    .filters {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: stretch;
+        width: 375px !important;
+        height: auto;
+        padding: 0%;
+        margin: 0%;
+    }
 
+    #left-filters {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    #right-filters {
+        margin: auto;
+        width: 260px;
+        align-items: center;
+        margin-top: -7px;
+        margin-bottom: 0%;
+        gap: 0%;
+    }
+
+    .select2-container .select2-selection--single {
+        width: 100% !important;
+    }
+
+    /* ======= Block Like to - Affichage des photo-block ======= */
      .block-like-to > p {
         text-align: center;
         padding: 20px;
+    }
+
+    #like-too {
+        margin-top: 40px;
+        margin-bottom: 10px;
+        font-family: 'Space Mono';
+        font-family: 18px;
+        font-weight: 400px;
+        line-height: 10%;
     }
     .block-like-to {
         height: 100%;
@@ -383,23 +465,23 @@
 
     .photoblock-gallery {
         display: grid;
-        grid-template-columns: 1fr; /* Une seule colonne */
-        gap: 15px;
-        width: 100%; /* Ajustement automatique à la largeur de l'écran */
+        grid-template-columns: 1fr;
+        width: 100%;
         margin: 10px 0;
+        gap: 10px;
     }
 
     .card-photo {
         position: relative;
         width: 318px;
         height: 279px;
-        margin: 10px auto;
+        margin-top: 5px;
     }
 
     .card-photo img {
         width: 318px !important;
         height: 279px !important;
-        object-fit: cover; /* Assure un bon ratio sans déformation */
+        object-fit: cover;
         display: block;
     }
 
@@ -415,12 +497,12 @@
         justify-content: space-between;
         align-items: flex-end;
         z-index: 1;
-        opacity: 0; /* Caché par défaut */
+        opacity: 0;
         transition: opacity 0.3s ease-in-out;
     }
 
     .card-photo:hover .photo-overlay {
-        opacity: 1; /* Affiche l'overlay au survol */
+        opacity: 1;
     }
 
     .photo-reference,
@@ -445,7 +527,7 @@
     .icon-fullscreen {
         position: absolute;
         top: 10px;
-        left: 265px; /* Ajuste la position pour correspondre au design mobile */
+        left: 265px;
     }
 
     .icon-eye {

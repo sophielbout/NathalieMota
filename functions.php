@@ -12,7 +12,6 @@
 function natmota_enqueue_assets() {
     if (!is_admin()) {
         // Styles
-        wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
         wp_enqueue_style('main-styles', get_template_directory_uri() . '/css/main.css', [], '1.0.0');
 
 
@@ -122,7 +121,9 @@ function ajouter_tailles_images_personnalisees() {
 }
 add_action('after_setup_theme', 'ajouter_tailles_images_personnalisees');
 
-// Inclure navigation-links.js
+/**
+ *  Inclure navigation-links.js
+ *  */
 function enqueue_navigation_links_script() {
     if (is_singular('photo')) {
         wp_enqueue_script(
@@ -139,18 +140,21 @@ add_action('wp_enqueue_scripts', 'enqueue_navigation_links_script');
 /**
  * Fonction AJAX pour charger plus de photos.
  */
-function natmota_load_more_photos() {
+function load_more_photos_ajax() {
+    // Vérifiez si la requête contient un numéro de page valide
     if (!isset($_POST['page']) || !is_numeric($_POST['page'])) {
-        wp_send_json_error(['message' => 'Paramètre "page" manquant ou invalide.']);
+        wp_send_json_error(['message' => 'Paramètres invalides']);
     }
 
-    $paged = intval($_POST['page']);
+    $page = intval($_POST['page']);
+
+    // Arguments pour charger les photos
     $args = [
-        'post_type'      => 'photos',
-        'posts_per_page' => 8,
+        'post_type'      => 'photo',
+        'posts_per_page' => 8, // Charge 8 photos par page
+        'paged'          => $page, // Page actuelle
         'orderby'        => 'date',
         'order'          => 'DESC',
-        'paged'          => $paged,
     ];
 
     $query = new WP_Query($args);
@@ -160,29 +164,17 @@ function natmota_load_more_photos() {
 
         while ($query->have_posts()) {
             $query->the_post();
-            ?>
-            <div class="card-photo">
-                <a href="<?php the_permalink(); ?>">
-                    <?php the_post_thumbnail('taille-photo-block'); ?>
-                    <div class="photo-overlay">
-                        <span class="photo-reference">
-                            <?php echo esc_html(get_post_meta(get_the_ID(), 'reference', true) ?: 'Non renseignée'); ?>
-                        </span>
-                        <span class="photo-category">
-                            <?php
-                            $categories = get_the_terms(get_the_ID(), 'categories');
-                            echo $categories && !is_wp_error($categories) ? esc_html($categories[0]->name) : 'Non classé';
-                            ?>
-                        </span>
-                    </div>
-                </a>
-            </div>
-            <?php
+            get_template_part('templates_parts/photo-block');
         }
 
+        $content = ob_get_clean();
+
+        // Vérifiez s'il reste des photos à charger
+        $has_more = $query->max_num_pages > $page;
+
         wp_send_json_success([
-            'content'  => ob_get_clean(),
-            'has_more' => $paged < $query->max_num_pages,
+            'content' => $content,
+            'has_more' => $has_more,
         ]);
     } else {
         wp_send_json_error(['message' => 'Aucune photo trouvée.']);
@@ -190,8 +182,9 @@ function natmota_load_more_photos() {
 
     wp_die();
 }
-add_action('wp_ajax_load_more_photos', 'natmota_load_more_photos');
-add_action('wp_ajax_nopriv_load_more_photos', 'natmota_load_more_photos');
+
+add_action('wp_ajax_load_more_photos', 'load_more_photos_ajax');
+add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos_ajax');
 
 /**
  * Fonction AJAX pour récupérer les filtres (taxonomies).

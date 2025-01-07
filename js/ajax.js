@@ -4,23 +4,22 @@
 
         if (loadMoreButton.length) {
             loadMoreButton.on('click', function () {
-                const page = parseInt($(this).attr('data-page')) + 1; // Incrémenter la page
+                const page = parseInt($(this).attr('data-page')) + 1; // Passe à la page suivante
                 const button = $(this);
 
-                // Appel AJAX
                 $.ajax({
-                    url: natmota_ajax.url, // URL définie via PHP
+                    url: natmota_ajax.url,
                     type: 'POST',
                     data: {
-                        action: 'load_more_photos', // Action PHP
-                        page: page, // Page actuelle
+                        action: 'load_more_photos', // Action définie dans PHP
+                        page: page, // Page à charger
                     },
                     beforeSend: function () {
                         button.text('Chargement...');
                     },
                     success: function (response) {
                         if (response.success) {
-                            // Ajouter les nouvelles photos
+                            // Ajouter le contenu chargé
                             $('.photoblock-gallery').append(response.data.content);
 
                             // Mettre à jour le numéro de page

@@ -3,7 +3,6 @@
 // ============================
 
 /* ======= Général ======= */
-
 html, body {
     height: 100vw;
     margin: 0;
@@ -28,21 +27,21 @@ html, body {
 }
 /* ====== Hero Image =======*/
 .hero-image {
-    background-size: cover; /* L'image couvre tout le conteneur */
-    background-position: center; /* Centrée dans le conteneur */
-    width: 100%; /* Adapte à la largeur de l'écran */
-    height: 60vh; /* Ajuste la hauteur relative à la hauteur de l'écran */
-    position: relative; /* Permet de positionner des éléments enfants */
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 60vh;
+    position: relative;
 }
 
 .overlay-title {
     position: absolute;
-    top: 50%; /* Centre verticalement */
-    left: 50%; /* Centre horizontalement */
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%; /* Adapte la largeur */
-    text-align: center; /* Centre le texte */
-    color: white; /* Assure une bonne lisibilité */
+    width: 80%;
+    text-align: center;
+    color: white;
     z-index: 10;
 }
 
@@ -66,18 +65,22 @@ html, body {
     height: 100vh;
     gap: 5px;
     padding: 0%;
+    text-transform: uppercase;
 }
+
 .post-featured-image  {
     width: 100%;
     height: auto;
     display: block;
 }
+
 .featured-image {
     display: flex;
     justify-content: flex-end;
     width: 50%;
     box-sizing: border-box;
 }
+
 .featured-image img {
     display: block;
     height: 100%;
@@ -97,22 +100,24 @@ html, body {
     font-style: italic;
     line-height: 58px;
     text-align: left;
+    margin-bottom: 20px;
 }
 
 .items-photo {
     margin: 0;
     font-size: 14px;
     line-height: 21px;
+    text-transform: uppercase;
     flex: 1;
     text-align: left;
     display: flex;
     flex-direction: row;
-    margin: 0;
     align-items: flex-end;
     border-bottom: #000000 solid 1px;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     width: 50%;
 }
+
 .post-meta {
     font-size: 14px;
     line-height: 21px;
@@ -157,7 +162,8 @@ html, body {
 .contact-button {
     display: flex;
     flex-direction: row;
-    width: 60%;
+    justify-content: space-between;
+    width: 50%;
 }
 .open-modal:hover {
     background-color: rgba(0, 0, 0, 1);
@@ -296,11 +302,16 @@ html, body {
     height: auto;
     gap: 10px;
 }
+
+#like-too {
+    margin: 25px 0 20px 0;
+}
 .photos-apparentees {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    margin-top: 20px;
 }
 .card-photo img {
     object-fit: cover;
